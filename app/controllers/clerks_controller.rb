@@ -33,7 +33,7 @@ class ClerksController < ApplicationController
   
         private
         def render_error
-            render json: { error: "Clerk not found" }, status: :not_found
+            render json: { error: "Clerk not found" }.to_json, status: :not_found
         end
   
         def find_clerk
@@ -45,11 +45,11 @@ class ClerksController < ApplicationController
         end
   
         def render_unprocessable_entity_response(invalid)
-            render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: invalid.record.errors.full_messages }.to_json, status: :unprocessable_entity
         end
   
         def authorize
-        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :client_id
+        return render json: { error: "Not authorized" }.to_json, status: :unauthorized unless session.include? :client_id
         end
 
 end

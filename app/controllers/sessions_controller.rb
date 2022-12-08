@@ -1,12 +1,11 @@
 class SessionsController < ApplicationController
-   # skip_before_action :authorize, only: :create
     def clerk_login
         clerk = Clerk.find_by(email: params[:email])
         if clerk&.authenticate(params[:password])
             session[:clerk_id] = clerk.id
             render json: clerk, status: :created
         else
-            render json: {error: "Invalid email or password"}, status: :unauthorized
+            render json: {error: "Invalid email or password"}.to_json, status: :unauthorized
         end
     end
 
@@ -23,7 +22,7 @@ class SessionsController < ApplicationController
             session[:admin_id] = admin.id
             render json: admin, status: :created
         else
-            render json: {error: "Invalid email or password"}, status: :unauthorized
+            render json: {error: "Invalid email or password"}.to_json, status: :unauthorized
         end
     end
 
@@ -39,7 +38,7 @@ class SessionsController < ApplicationController
             session[:user_id] = user.id
             render json: user, status: :created
         else
-            render json: {error: "Invalid email or password"}, status: :unauthorized
+            render json: {error: "Invalid email or password"}.to_json, status: :unauthorized
         end
     end
 
@@ -47,6 +46,4 @@ class SessionsController < ApplicationController
         session.delete :user_id
         head :no_content
     end
-
-    
 end

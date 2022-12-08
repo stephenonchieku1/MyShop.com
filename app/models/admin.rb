@@ -10,7 +10,4 @@ class Admin < ApplicationRecord
     has_many :clerks
     has_many :items, through: :clerks
     has_many :requested_items, through: :clerks
-    
-
-
 end

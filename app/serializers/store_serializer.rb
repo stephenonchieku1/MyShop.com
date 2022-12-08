@@ -1,5 +1,5 @@
 class StoreSerializer < ActiveModel::Serializer
-  attributes :id, :store_name, :location, :description, :user_id
+  attributes :id, :store_name, :location, :description
   has_one :admin
   has_many :clerks, through: :admin
   has_many :items, through: :clerks

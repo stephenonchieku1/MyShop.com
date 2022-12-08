@@ -20,7 +20,8 @@ class ItemsController < ApplicationController
     def update
       items=Item.find_by(id:params[:id])
       items.update(item_params)
-      render json:items,status: :created
+      render json:items,status: :updated
+      
     end
   
     def destroy

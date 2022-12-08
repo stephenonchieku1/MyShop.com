@@ -7,7 +7,7 @@ class AuthenticationController < ApplicationController
             session[:user_id] = user.id
             render json: user
         else
-            render json: {errors: []}, status: :unauthorized
+            render json: {errors: []}.to_json, status: :unauthorized
         end
     end
   
@@ -17,7 +17,7 @@ class AuthenticationController < ApplicationController
             session.delete :user_id
             head :no_content
         else
-            render json: {errors: []}, status: :unauthorized
+            render json: {errors: []}.to_json, status: :unauthorized
    
         end
     end

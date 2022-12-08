@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         if user
         render json: user, status: :created
         else
-        render json: {error: "Not authorized"}, status: :unauthorized
+        render json: {error: "Not authorized"}.to_json, status: :unauthorized
         end
     end
     
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             render json: user, status: :created
         else
-            render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
+            render json: {errors: user.errors.full_messages}.to_json, status: :unprocessable_entity
         end
   
     end

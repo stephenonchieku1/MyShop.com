@@ -4,12 +4,12 @@ class AdminsController < ApplicationController
   def create
     admin = Admin.create(admin_params)
     if admin.valid?
-        session[:admin_id] = admin.id
+        #session[:admin_id] = admin.id
         render json: admin, status: :created
     else
         render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
     end
-    render json: admin, status: :created
+    #render json: admin, status: :created
   end
 
 
@@ -46,7 +46,7 @@ def record_not_found
     render json: { error: "Admin not found" }, status: :not_found
 end
 def authorize
-    return render json: {errors: []}, status: :unauthorized unless session.include? :user_id
+    return render json: {errors: []}.to_json, status: :unauthorized unless session.include? :user_id
 end
 
 end

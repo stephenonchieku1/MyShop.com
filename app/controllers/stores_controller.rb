@@ -21,10 +21,10 @@ class StoresController < ApplicationController
 
     private 
     def store_params
-        params.permit(:store_name, :location, :description, :user_id)
+        params.permit(:store_name, :location, :description)
     end
     def record_not_found
-        render json: { error: "Store not found" }, status: :not_found
+        render json: { error: "Store not found" }.to_json, status: :not_found
     end
     
 end
